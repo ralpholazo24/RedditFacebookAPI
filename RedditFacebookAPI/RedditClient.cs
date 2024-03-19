@@ -6,11 +6,10 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
-namespace Reddit
+namespace RedditFacebookAPI
 {
     public class RedditClient
     {
-        
         public async Task<RedditResponse> GetRedditPosts(string groupName)
         {            
             HttpClient client = new HttpClient();
@@ -24,12 +23,9 @@ namespace Reddit
 
             // Deserialize JSON response
             var redditResponse = JsonSerializer.Deserialize<RedditResponse>(responseBody);
-
       
             return redditResponse;
         }
-
-
     }
 
 

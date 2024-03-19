@@ -7,7 +7,7 @@ using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Web;
 
-namespace Reddit
+namespace RedditFacebookAPI
 {    
     public class FacebookClient
     {
@@ -157,7 +157,7 @@ namespace Reddit
                             Console.WriteLine($"Schedule Date: {currentDate.Date.ToShortDateString()}, Time: {currentDate.TimeOfDay}");
                             Console.WriteLine($"Title: {child.Data.Title}, Image: {child.Data.Url}\n");
 
-                            //await PublishedScheduledPost(request);
+                            await PublishedScheduledPost(request);
 
                             Console.WriteLine("Published Done.");
                             Console.WriteLine("------------------------------------------------------------------------------- >>\n\n\n");
