@@ -10,7 +10,7 @@ namespace RedditFacebookAPI
 {
     public class RedditClient
     {
-        public async Task<RedditResponse> GetRedditPosts(string groupName)
+        public async Task<List<RedditChild>> GetRedditPosts(string groupName)
         {            
             HttpClient client = new HttpClient();
 
@@ -23,8 +23,11 @@ namespace RedditFacebookAPI
 
             // Deserialize JSON response
             var redditResponse = JsonSerializer.Deserialize<RedditResponse>(responseBody);
+
+            // Get post with 1000 ups
+            var filterResponse = redditResponse.Data.Children.Where(e => e.Data.Ups > 1000 && e.Data.Created < DateTime.UtcNow).ToList();            
       
-            return redditResponse;
+            return filterResponse;
         }
     }
 
@@ -62,6 +65,10 @@ namespace RedditFacebookAPI
 
         [JsonPropertyName("created_utc")]
         public double Created_UTC { get; set; }
+
+
+        [JsonPropertyName("ups")]
+        public int Ups { get; set; }
 
 
         public DateTime Created
